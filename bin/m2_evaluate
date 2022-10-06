@@ -1,6 +1,6 @@
 #!python3
 
-from evaluate import get_m2score
+from m2scorer import get_m2score
 
 if __name__ == '__main__':
 
