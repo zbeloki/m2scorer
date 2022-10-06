@@ -1,7 +1,7 @@
 This fork exposes a library call for Python3 to calculate the M2 score from three lists of sentences: predictions, incorrects and references. This module must be installed to use it as a library.
 
 Example:
-```
+```python3
 from m2scorer import get_m2score
 
 preds = ['one two thrie', 'four five']
