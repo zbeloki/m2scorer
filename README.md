@@ -1,3 +1,15 @@
+This fork exposes a library call for Python3 to calculate the M2 score from three lists of sentences: predictions, incorrects and references. This module must be installed to use it as a library.
+
+Example:
+```
+from m2scorer import get_m2score
+
+preds = ['one two thrie', 'four five']
+srcs = ['one tuo thre', 'for five']
+refs = ['one two three', 'four five']
+precision, recall, f_score = get_m2score(preds, srcs, refs)
+```
+
 **************************************************************************************************
 **THIS IS A DEVELOPMENTAL REPOSITORY FOR M2Scorer**   
 **FOR AN OFFICIAL VERSION (VERSION 3.2), visit http://www.comp.nus.edu.sg/~nlp/conll14st.html**  
