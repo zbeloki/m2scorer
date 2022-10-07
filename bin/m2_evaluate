@@ -8,6 +8,7 @@ if __name__ == '__main__':
     parser.add_argument("SRC", help='File path containing the original sentences containing grammatical errors')
     parser.add_argument("TGT", help='File path containing the predicted corrected sentences')
     parser.add_argument("REF", help='File path containing the real corrected sentences')
+    parser.add_argument("--keep-gold", action='store_true', default=False, help='Keep the gold file generated in M2scorer format containing all edits. Creates the file named gold.m2 in the current working directory.')
     args = parser.parse_args()
 
     with open(args.SRC, 'r') as f:
@@ -17,7 +18,7 @@ if __name__ == '__main__':
     with open(args.TGT, 'r') as f:
         tgt = [ ln.strip() for ln in f.readlines() if ln.strip() != '' ]
 
-    p, r, f = get_m2score(tgt, src, ref)
+    p, r, f = get_m2score(tgt, src, ref, args.keep_gold)
     print(f"p: {p:.3f}")
     print(f"r: {r:.3f}")
     print(f"f: {f:.3f}")

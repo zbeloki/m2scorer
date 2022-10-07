@@ -4,9 +4,10 @@ import subprocess
 import re
 from tempfile import NamedTemporaryFile
 import pathlib
+import shutil
 
 
-def get_m2score(preds, srcs, refs):
+def get_m2score(preds, srcs, refs, keep_gold=False):
 
     # get the directory of this script
     scripts_dir = pathlib.Path(__file__).parent.resolve()
@@ -49,6 +50,9 @@ def get_m2score(preds, srcs, refs):
         command = f"python3 {os.path.join(scripts_dir, 'testset_to_m2score.py')} --testset {f_gold.name}"
         if run_command(command, std_output=f_gold_m2) != 0:
             raise Exception("Error while formatting gold reference file")
+        if keep_gold:
+            gold_fpath = os.path.join(os.getcwd(), 'gold.m2')
+            shutil.copyfile(f_gold_m2.name, gold_fpath)
         
         command = f"python2 {os.path.join(scripts_dir, 'm2scorer.py')} {f_pred_tok.name} {f_gold_m2.name}"
         process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
