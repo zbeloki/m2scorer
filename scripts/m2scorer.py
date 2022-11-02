@@ -37,7 +37,6 @@ from util import paragraphs
 from util import smart_open
 
 
-
 def load_annotation(gold_file):
     source_sentences = []
     gold_edits = []
@@ -134,6 +133,9 @@ fin = smart_open(system_file, 'r')
 system_sentences = [line.decode("utf8").strip() for line in fin.readlines()]
 fin.close()
 
+print system_sentences
+print source_sentences
+print gold_edits
 p, r, f1 = levenshtein.batch_multi_pre_rec_f1(system_sentences, source_sentences, gold_edits, max_unchanged_words, beta, ignore_whitespace_casing, verbose, very_verbose)
 
 print "Precision   : %.4f" % p
