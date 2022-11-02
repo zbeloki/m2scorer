@@ -58,7 +58,7 @@ def get_diff(toks1, toks2, i1 = 0):
         if next_i1 is None:
             next_i1 = len(toks1)
             next_i2 = len(toks2)
-            
+
         diffs = []
         min_next = min(next_i1, next_i2)
         for j in range(min_next):
@@ -66,7 +66,7 @@ def get_diff(toks1, toks2, i1 = 0):
         for j1 in range(min_next, next_i1):
             diffs.append(Diff(j1+i1, j1+i1+1, '-NONE-'))
         for j2 in range(min_next, next_i2):
-            diffs.append(Diff(i1, i1, toks2[j2]))
+            diffs.append(Diff(min_next+i1, min_next+i1, toks2[j2]))
             
         return diffs + get_diff(toks1[next_i1:], toks2[next_i2:], i1+next_i1)
         
